@@ -1,10 +1,8 @@
-package com.kotlinspringvue.backend.repository
+package com.bookshop.repository
 
-import com.kotlinspringvue.backend.jpa.Person
-import org.springframework.stereotype.Repository
+import com.bookshop.jpa.Person
 import org.springframework.data.repository.CrudRepository
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.repository.query.Param
+import org.springframework.stereotype.Repository
 
 @Repository
 interface PersonRepository: CrudRepository<Person, Long> {

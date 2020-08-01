@@ -24,6 +24,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-mail")
+	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("com.mashape.unirest:unirest-java:1.4.9")
 	implementation("commons-io:commons-io:2.4")
 	implementation("io.jsonwebtoken:jjwt:0.9.0")

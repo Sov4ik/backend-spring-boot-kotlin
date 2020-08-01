@@ -1,7 +1,6 @@
-package com.kotlinspringvue.backend.repository
+package com.bookshop.repository
 
-import com.kotlinspringvue.backend.jpa.Role
-import org.springframework.data.repository.CrudRepository
+import com.bookshop.jpa.Role
 import org.springframework.data.repository.query.Param
 import org.springframework.data.jpa.repository.JpaRepository
 
