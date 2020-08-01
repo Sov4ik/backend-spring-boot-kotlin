@@ -8,7 +8,6 @@ import com.bookshop.response.ResponseMessage
 import com.bookshop.response.SuccessfulSigninResponse
 import com.bookshop.response.loginUser
 import com.bookshop.response.newUser
-import com.bookshop.service.EmailServiceImpl
 import com.bookshop.service.UserDetailsService
 import com.bookshop.service.UserDetailsServiceImpl.Companion.TOKEN_EXPIRED
 import com.bookshop.service.UserDetailsServiceImpl.Companion.TOKEN_INVALID
@@ -121,8 +120,8 @@ class AuthController {
                 )
                 user.roles = listOf(roleRepository.findByName("ROLE_USER"))
                 val registeredUser = userRepository.save(user)
-                val emailService = EmailServiceImpl()
-                emailService.sendRegistrationConfirmationEmail(registeredUser)
+                /*val emailService = EmailServiceImpl()
+                emailService.sendRegistrationConfirmationEmail(registeredUser)*/
             } catch (e: Exception) {
                 return ResponseEntity(ResponseMessage("Server error. Please, contact site owner"),
                         HttpStatus.SERVICE_UNAVAILABLE)

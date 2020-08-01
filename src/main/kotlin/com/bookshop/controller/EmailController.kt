@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api")
 class EmailController {
 
-    @Value("\${spring.mail.username}")
-    lateinit var addressee: String
+   /* @Value("\${spring.mail.username}")
+    lateinit var addressee: String*/
 
     @GetMapping("/admincontent")
     @PreAuthorize("hasRole('ADMIN')")
@@ -42,7 +42,7 @@ class EmailController {
     fun sendTemplateEmail(): ResponseEntity<*> {
         try {
             val params:MutableMap<String, Any> = mutableMapOf()
-            params["addresseeName"] = addressee
+            // params["addresseeName"] = addressee
             params["signatureImage"] = "https://coderlook.com/wp-content/uploads/2019/07/spring-by-pivotal.png"
             //emailService.sendSimpleMessageUsingTemplate(addressee, "Template Email", "emailTemplate", params)
         } catch (e: Exception) {

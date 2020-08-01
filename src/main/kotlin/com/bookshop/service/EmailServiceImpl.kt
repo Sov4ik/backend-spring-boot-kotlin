@@ -16,7 +16,7 @@ import java.util.*
 import javax.mail.MessagingException
 
 
-@Component
+/*@Component
 class EmailServiceImpl  : EmailService{
 
     @Value("\${spring.mail.username}")
@@ -114,4 +114,4 @@ class EmailServiceImpl  : EmailService{
         val msg = "<p>Please, follow the link to complete your registration:</p><p><a href=\"$link\">$link</a></p>"
         user.email?.let{sendHtmlMessage(user.email!!, "KSVG APP: Registration Confirmation", msg)}
     }
-}
+}*/

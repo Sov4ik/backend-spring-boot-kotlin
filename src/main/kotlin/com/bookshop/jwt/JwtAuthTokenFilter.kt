@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
+import org.springframework.util.StringUtils
 import org.springframework.web.filter.OncePerRequestFilter
 import java.io.IOException
 import javax.servlet.FilterChain
@@ -49,9 +50,15 @@ class JwtAuthTokenFilter : OncePerRequestFilter() {
 
     private fun getJwt(request: HttpServletRequest): String? {
         try {
-            for (cookie in request.cookies) {
-                if (cookie.name == authCookieName) {
-                    return cookie.value
+            val headerAuth : String = request.getHeader("Authorization")
+
+            if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+                return headerAuth.substring(7)
+            } else {
+                for (cookie in request.cookies) {
+                    if (cookie.name == authCookieName) {
+                        return cookie.value
+                    }
                 }
             }
         } catch (e: Exception) {
