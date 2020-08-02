@@ -18,7 +18,7 @@ class AdminProtectedControllerTest : AbstractControllerTest() {
             contentType = MediaType.APPLICATION_JSON
             header("Authorization", "Bearer $token")
         }.andExpect{
-            status().is5xxServerError
+            status { isOk }
         }
     }
 
@@ -30,7 +30,8 @@ class AdminProtectedControllerTest : AbstractControllerTest() {
             contentType = MediaType.APPLICATION_JSON
             header("Authorization", "Bearer $token")
         }.andExpect {
-            status().isOk }
+            status { isOk }
+        }
     }
 
     @Test
@@ -41,7 +42,7 @@ class AdminProtectedControllerTest : AbstractControllerTest() {
             contentType = MediaType.APPLICATION_JSON
             header("Authorization", "Bearer $token")
         }.andExpect {
-            status().isOk
+            status { isOk }
         }
     }
 
@@ -50,6 +51,7 @@ class AdminProtectedControllerTest : AbstractControllerTest() {
         mockMvc.get("/api/test/admin") {
             contentType = MediaType.APPLICATION_JSON
         }.andExpect {
-            status().isOk}
+            status { isUnauthorized }
+        }
     }
 }

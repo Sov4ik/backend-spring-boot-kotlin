@@ -15,7 +15,7 @@ class AuthenticationControllerTest : AbstractControllerTest() {
             contentType = MediaType.APPLICATION_JSON
             content = ("{\"password\": \"123456\", \"username\": \"aa\"}")
         }
-                .andExpect { (status().isOk) }
+                .andExpect { status { isOk } }
     }
 
     @Test
@@ -25,7 +25,7 @@ class AuthenticationControllerTest : AbstractControllerTest() {
             contentType = (MediaType.APPLICATION_JSON)
             content = ("{\"password\": \"123456\", \"username\": \"aa\"}")
         }.andExpect {
-            status().isOk
+            status { isOk }
         }
     }
 
@@ -37,7 +37,7 @@ class AuthenticationControllerTest : AbstractControllerTest() {
             content = ("{\"password\": \"aaaa\", \"username\": \"baaaaaaa\"}")
         }
                 .andExpect {
-                   status().is5xxServerError
+                    status { isBadRequest }
                 }
     }
 
@@ -49,7 +49,7 @@ class AuthenticationControllerTest : AbstractControllerTest() {
             content = ("{\"password\": \"anypassword\", \"username\": \"notexisting\"}")
         }
                 .andExpect {
-                    status().is5xxServerError
+                    status { isBadRequest }
                 }
     }
 }

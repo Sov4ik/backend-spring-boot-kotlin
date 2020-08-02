@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.http.MediaType
 import org.springframework.test.annotation.Rollback
 import org.springframework.test.web.servlet.post
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.transaction.annotation.Transactional
 
 
@@ -21,7 +20,7 @@ class ValidationTest : AbstractControllerTest() {
             contentType = MediaType.APPLICATION_JSON
             content = ("{\"username\": \"\", \"password\": \"\", \"email\": \"email@email.ru\"}")
         }.andExpect{
-            status().is5xxServerError
+            status { isBadRequest }
         }
     }
 
@@ -35,7 +34,7 @@ class ValidationTest : AbstractControllerTest() {
             contentType = MediaType.APPLICATION_JSON
             content = ("{\"username\": \"u53rnA'>3\", \"password\": \"password\", \"email\": \"email@email.ru\"}")
         }.andExpect {
-            status().isBadRequest
+            status { isBadRequest }
         }
     }
 
@@ -47,7 +46,7 @@ class ValidationTest : AbstractControllerTest() {
             contentType = (MediaType.APPLICATION_JSON)
             content = ("{\"username\": \"username\", \"password\": \"pa55w0[d\", \"email\": \"email@email.ru\"}")
         }.andExpect {
-            status().isBadRequest
+            status { isBadRequest }
         }
     }
 
@@ -57,7 +56,7 @@ class ValidationTest : AbstractControllerTest() {
         mockMvc.post("/api/auth/signin") {
             contentType = MediaType.APPLICATION_JSON
             content = ("{\"username\": \"\", \"password\": \"\"}")
-        }.andExpect { status().isBadRequest }
+        }.andExpect { status { isBadRequest } }
     }
 
     @Test
@@ -66,7 +65,7 @@ class ValidationTest : AbstractControllerTest() {
         mockMvc.post("/api/auth/signin") {
             contentType = MediaType.APPLICATION_JSON
             content = ("{\"username\": \"kjhasd'}\", \"password\": \"\"}")
-        }.andExpect { status().isBadRequest }
+        }.andExpect { status { isBadRequest } }
     }
 
     @Test
@@ -75,6 +74,6 @@ class ValidationTest : AbstractControllerTest() {
         mockMvc.post("/api/auth/signin") {
             contentType = MediaType.APPLICATION_JSON
             content = "{\"username\": \"\", \"password\": \"{123}\"}"
-        }.andExpect { status().isBadRequest }
+        }.andExpect { status { isBadRequest } }
     }
 }

@@ -54,6 +54,7 @@ class JwtAuthTokenFilter : OncePerRequestFilter() {
 
             if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
                 return headerAuth.substring(7)
+
             } else {
                 for (cookie in request.cookies) {
                     if (cookie.name == authCookieName) {
