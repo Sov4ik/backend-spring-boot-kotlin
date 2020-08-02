@@ -40,7 +40,6 @@ dependencies {
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("com.ninja-squad:springmockk:2.0.1")
 	testImplementation("org.mockito", "mockito-core")
-	testImplementation("org.powermock", "powermock-api-mockito2")
 }
 
 tasks.withType<Test> {

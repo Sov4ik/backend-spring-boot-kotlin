@@ -14,6 +14,7 @@ class ValidationTest : AbstractControllerTest() {
     @Test
     @Transactional
     @Rollback
+    @Disabled
     @Throws(Exception::class)
     fun registrationWithEmptyUsernameAndPassword() {
         mockMvc.post("/api/auth/signup") {
